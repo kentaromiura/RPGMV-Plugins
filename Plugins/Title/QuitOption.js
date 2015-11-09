@@ -26,7 +26,7 @@
     return function(){
       _.apply(this, slice(arguments))
       this._commandWindow.setHandler('Exit', function(){
-        global.close();
+        global.close()
       })
     }
   }(Scene_Title.prototype.createCommandWindow)
