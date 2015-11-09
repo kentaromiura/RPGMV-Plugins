@@ -1,0 +1,26 @@
+{
+  "name": "rpgmv-plugins",
+  "version": "1.0.0",
+  "description": "A collection of plugins for rpgmaker mv done by me",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentaromiura/RPGMV-Plugins.git"
+  },
+  "keywords": [
+    "RPGMaker",
+    "MV"
+  ],
+  "author": "Cristian Carlesso <@kentaromiura>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentaromiura/RPGMV-Plugins/issues"
+  },
+  "devDependencies" : {
+    "Reshape": "https://github.com/kentaromiura/Reshape"
+  },
+  "homepage": "https://github.com/kentaromiura/RPGMV-Plugins#readme"
+}
