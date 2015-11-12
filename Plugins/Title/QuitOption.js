@@ -4,10 +4,6 @@
  * @param quitOption
  * @desc Text to show in the main menu
  * @default Quit
- *
- * @param debug
- * @desc if true opens chrome inspector for testing
- * @default false
  */
 
 !function(global){
@@ -19,8 +15,6 @@
   var slice = Function.prototype.call.bind(Array.prototype.slice),
     parameters = PluginManager.parameters(getFileName()),
     quitOption = parameters.quitOption || 'Quit'
-
-  if ('' + parameters.debug === 'true') require('nw.gui').Window.get().showDevTools()
 
   Scene_Title.prototype.createCommandWindow = function(_){
     return function(){
