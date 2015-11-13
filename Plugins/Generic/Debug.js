@@ -6,9 +6,6 @@
  * @default false
  */
 
-function getFileName(){
-	var srcParts = document.currentScript.src.split('/')
-	return srcParts[srcParts.length-1].replace('.js', '')
-}
+var getParameters = require('../../Common/getParameters')
 
-if ('' + PluginManager.parameters(getFileName()).debug === 'true') require('nw.gui').Window.get().showDevTools()
+if (getParameters().debug === 'true') require('nw.gui').Window.get().showDevTools()

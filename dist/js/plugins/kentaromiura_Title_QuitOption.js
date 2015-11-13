@@ -5,31 +5,4 @@
  * @desc Text to show in the main menu
  * @default Quit
  */
-
-!function(global){
-  function getFileName(){
-    var srcParts = document.currentScript.src.split('/')
-    return srcParts[srcParts.length-1].replace('.js', '')
-  }
-
-  var slice = Function.prototype.call.bind(Array.prototype.slice),
-    parameters = PluginManager.parameters(getFileName()),
-    quitOption = parameters.quitOption || 'Quit'
-
-  Scene_Title.prototype.createCommandWindow = function(_){
-    return function(){
-      _.apply(this, slice(arguments))
-      this._commandWindow.setHandler('Exit', function(){
-        global.close()
-      })
-    }
-  }(Scene_Title.prototype.createCommandWindow)
-
-  Window_TitleCommand.prototype.makeCommandList = function(_){
-    return function(){
-      _.apply(this, slice(arguments))
-      this.addCommand(quitOption, 'Exit')
-    }
-  }(Window_TitleCommand.prototype.makeCommandList)
-
-}(Function('return this')())
+(function(c,d){var a={},b=function(f){var e=a[f];if(!e){e=a[f]={};var g=e.exports={};c[f].call(g,b,e,g,d)}return e.exports};b('0')}({'0':function(b,g,h,f){var c=b('1'),a=b('2'),d=c(),e=d.quitOption||'Quit';Scene_Title.prototype.createCommandWindow=function(b){return function(){b.apply(this,a(arguments));this._commandWindow.setHandler('Exit',function(){f.close()})}}(Scene_Title.prototype.createCommandWindow);Window_TitleCommand.prototype.makeCommandList=function(b){return function(){b.apply(this,a(arguments));this.addCommand(e,'Exit')}}(Window_TitleCommand.prototype.makeCommandList)},'1':function(b,c,d,e){var a=b('3');c.exports=function(){return PluginManager.parameters(a())}},'2':function(b,a,c,d){a.exports=Function.prototype.call.bind(Array.prototype.slice)},'3':function(b,a,c,d){a.exports=function(){return/([^\/]+)\.js$/.exec(document.currentScript.src)[1]}}},this))

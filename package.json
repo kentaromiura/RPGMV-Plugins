@@ -22,7 +22,8 @@
   "devDependencies" : {
     "Reshape": "https://github.com/kentaromiura/Reshape",
     "clint": "*",
-    "glob": "*"
+    "glob": "*",
+    "wrapup": "*"
   },
   "homepage": "https://github.com/kentaromiura/RPGMV-Plugins#readme"
 }

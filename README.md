@@ -15,6 +15,7 @@ Current plugins:
 How to use
 ==========
 there's a deploy script that allows you to deploy all the scripts in your project folder,
-in the future I'm planning to support deploying only a subset of plugin,
-for now just deploy on any directory and copy only the scripts you need
+it requires you to run `npm install` first.
 
+the dist folder should always be updated with the last available build as it's just the equivalent of running
+`./deploy -p dist/`
