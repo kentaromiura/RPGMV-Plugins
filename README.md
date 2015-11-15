@@ -6,6 +6,8 @@ Simple repository for my plugins
 Current plugins:
 ```
 .
+├── Battle
+│   └── EnemyStats.js Display the HP of an enemy
 ├── Generic
 │   └── Debug.js Allows to open the chrome devtool
 └── Title

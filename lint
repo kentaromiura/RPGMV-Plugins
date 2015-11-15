@@ -2,6 +2,7 @@
 
 FILES=(
 	"../../Plugins/**/*.js"
+	"../../Common/**/*.js"
 )
 TRANSFORMS=(
 	./test_transforms/objectify.js 

@@ -4,7 +4,7 @@ var fs = require('fs')
 var wrapup = require('wrapup')
 
 clint.command('--path', '-p', 'path to the project folder')
-var output;
+var output
 clint.on('command', function(name, value) {
 	switch(name){
 		case '--path':
@@ -21,7 +21,7 @@ clint.on('complete', function(){
 	} else {
 		glob.sync("./Plugins/**/*js").forEach(function(path){
 			var to = path.replace('./Plugins/', 'kentaromiura_').replace('/','_')
-			var source = ''+ fs.readFileSync(path);
+			var source = ''+ fs.readFileSync(path)
 			
 			var wrap = new wrapup({
 				compress: true,

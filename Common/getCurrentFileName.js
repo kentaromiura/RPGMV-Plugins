@@ -1,3 +1,3 @@
 module.exports = function(){
-	return /([^\/]+)\.js$/.exec(document.currentScript.src)[1]
+  return /([^\/]+)\.js$/.exec(document.currentScript.src)[1]
 }
