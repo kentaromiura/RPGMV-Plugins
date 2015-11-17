@@ -2,7 +2,15 @@ var slice = require('./slice')
 
 module.exports = function dispatchWhenDone(fn, event){
   return function(){
-    fn.apply(this, slice(arguments))
-    global.dispatchEvent(new CustomEvent(event))
+    var args = slice(arguments)
+    var result = fn.apply(this, args)
+    
+    global.dispatchEvent(new CustomEvent(event, {'detail': {
+      args: args,
+      result: result,
+      context: this 
+    }}))
+    
+    return result
   }
 }
