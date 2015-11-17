@@ -21,19 +21,19 @@ function queue(fn){
 }
 
 Transition.prototype = {
-  
+
   get paused() {
     return this.cancel == null && this.elapsed != null
   },
-  
+
   get active() {
     return this.cancel != null
   },
-  
+
   get idle() {
     return this.cancel == null && this.elapsed == null
   },
-  
+
   start: function() {
     if (this.idle) {
       this.elapsed = 0
@@ -41,13 +41,13 @@ Transition.prototype = {
     }
     return this
   },
-  
+
   step: function(time) {
     this.elapsed += time - (this.time || time)
-  
+
     var factor = this.elapsed / this.duration
     if (factor > 1) factor = 1
-  
+
     if (factor !== 1) { // keep calling step
       this.time = time
       this.cancel = queue(this.step)
@@ -55,11 +55,11 @@ Transition.prototype = {
       this.cancel = this.time = this.elapsed = null
       queue(this.onEnd)
     }
-  
+
     var delta = this.equation(factor)
     this.onStep(delta)
   },
-  
+
   stop: function() {
     if (this.active) {
       this.cancel()
@@ -67,7 +67,7 @@ Transition.prototype = {
     }
     return this
   },
-  
+
   pause: function() {
     if (this.active) {
       this.cancel()
@@ -75,8 +75,8 @@ Transition.prototype = {
     }
     return this
   },
-  
-  loop: function() {    
+
+  loop: function() {
     var loop = this
     loop.onEnd = function(){
       loop.start()
@@ -89,7 +89,7 @@ Transition.prototype = {
       }
     }
   },
-  
+
   resume: function() {
     if (this.paused) {
       this.cancel = queue(this.step)
