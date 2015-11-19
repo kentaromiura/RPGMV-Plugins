@@ -55,10 +55,12 @@
  *
  */
 
-var dispatchWhenDone = require('../../Common/dispatchWhenDone')
 var animation = require('../../Common/kamicane.cubicBezier')
 var Transition = require('../../Common/transition')
 var getParameters = require('../../Common/getParameters')
+var getEnemySprite = require('../../Common/getEnemySprite')
+require('../../Common/Events/gameObjectsCreated')()
+
 var PARAMETERS = getParameters()
 var alwaysDisplay = PARAMETERS.displayAfterAbility === 'false'
 
@@ -67,8 +69,7 @@ function setAsKnown(id){
 }
 
 if(!alwaysDisplay){
-  Game_Action.prototype.apply = dispatchWhenDone(Game_Action.prototype.apply, 'gameActionApplied')
-
+  require('../../Common/Events/gameActionApplied')()
   global.addEventListener('gameActionApplied', function(event){
     if(event.detail.context.item().name === PARAMETERS.abilityName){
       var target = event.detail.args[0]
@@ -89,36 +90,11 @@ if(!alwaysDisplay){
   }(DataManager.makeSaveContents)
 
   // implement load
-  DataManager.extractSaveContents = dispatchWhenDone(DataManager.extractSaveContents, 'gameLoad')
-  global.addEventListener('gameLoad', function(event){
+  require('../../Common/Events/savegameLoad')()
+  global.addEventListener('savegameLoad', function(event){
     event.detail.args[0].knownEnemies.forEach(setAsKnown)
-    makeCurrentGameSystemNotify()
   })
 }
-
-function getEnemySprite(enemy){
-  return SceneManager._scene._spriteset._battleField.children.filter(function(sprite){
-    return sprite._enemy === enemy
-  })[0]
-}
-
-function makeCurrentGameSystemNotify(){
-  var events = ['battleStarted', 'battleWon', 'battleEscaped']
-
-  ;['onBattleStart', 'onBattleWin', 'onBattleEscape'].forEach(function(event, i){
-    $gameSystem[event] = dispatchWhenDone($gameSystem[event], events[i])
-  })
-}
-function addBattleEvents(){
-  BattleManager.processDefeat = dispatchWhenDone(BattleManager.processDefeat, 'afterDefeat')
-  makeCurrentGameSystemNotify()
-}
-
-// all the $* variable get set after DataManager.createGameObjects, the plugin though runs before that call.
-DataManager.createGameObjects = dispatchWhenDone(
-  DataManager.createGameObjects,
-  'gameObjectsCreated'
-)
 
 var animationFormula = animation([
   { x: 0, y: 0.89},
@@ -136,7 +112,7 @@ var animationFormula = animation([
   onTransition = function(_){deltaY = MAX_DELTA * _},
   transition = new Transition(2000, animationFormula, onTransition),
   onGameObjectsCreated = function(){
-    addBattleEvents()
+    require('../../Common/addBattleEvents')()
 
     if (PARAMETERS.animate === 'true') {
       transition.loop()
