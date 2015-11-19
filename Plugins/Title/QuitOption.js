@@ -10,18 +10,16 @@ var getParameters = require('../../Common/getParameters'),
     parameters = getParameters(),
     quitOption = parameters.quitOption || 'Quit'
 
-Scene_Title.prototype.createCommandWindow = function(_){
-  return function(){
-    _.apply(this, slice(arguments))
-    this._commandWindow.setHandler('Exit', function(){
-      global.close()
-    })
-  }
-}(Scene_Title.prototype.createCommandWindow)
+require('../../Common/Events/Title/commandWindowCreated')()
+global.addEventListener('commandWindowCreated', function(event){
+  var win = event.detail.context
+  win._commandWindow.setHandler('Exit', function(){
+    global.close()
+  })
+})
 
-Window_TitleCommand.prototype.makeCommandList = function(_){
-  return function(){
-    _.apply(this, slice(arguments))
-    this.addCommand(quitOption, 'Exit')
-  }
-}(Window_TitleCommand.prototype.makeCommandList)
+require('../../Common/Events/Title/commandListMade')()
+global.addEventListener('commandListMade', function(event){
+  var menu = event.detail.context;
+  menu.addCommand(quitOption, 'Exit')
+})
