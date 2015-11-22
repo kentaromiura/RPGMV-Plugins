@@ -15,13 +15,13 @@ if (getParameters().debug === 'true') gui.Window.get().showDevTools()
 
 global.addEventListener('keydown', function(event) {
   if(event.ctrlKey && event.keyCode == 82) {
-    location.reload();
-    event.preventDefault();
+    location.reload()
+    event.preventDefault()
   }
-});
+})
 
 if (getParameters().isOSX === 'true') {
-  var mb = new gui.Menu({type:"menubar"});
-  mb.createMacBuiltin("DEBUG");
-  gui.Window.get().menu = mb;
+  var mb = new gui.Menu({type:"menubar"})
+  mb.createMacBuiltin("DEBUG")
+  gui.Window.get().menu = mb
 }

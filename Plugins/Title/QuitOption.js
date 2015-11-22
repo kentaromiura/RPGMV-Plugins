@@ -20,6 +20,6 @@ global.addEventListener('commandWindowCreated', function(event){
 
 require('../../Common/Events/Title/commandListMade')()
 global.addEventListener('commandListMade', function(event){
-  var menu = event.detail.context;
+  var menu = event.detail.context
   menu.addCommand(quitOption, 'Exit')
 })
