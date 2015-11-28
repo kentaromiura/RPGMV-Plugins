@@ -1,7 +1,7 @@
 /*:
  * @plugindesc Applies pixi filter to the background of menus
  * @author Cristian Carlesso <kentaromiura>
- 
+
  * @param Blur
  * @desc applies the blur filter, (0 = disabled, 1 or more = order in which is applied)
  * @default 0
@@ -46,27 +46,27 @@
  * ============================================================================
  * Introduction
  * ============================================================================
- * This plugin allows you to apply some predefined filters 
+ * This plugin allows you to apply some predefined filters
  * to your menu background.
- * The filters can be placed in any order, 
+ * The filters can be placed in any order,
  * just set the preferred order in the parameter configuration
- * 
+ *
  * The filters will only be visible in environment supporting a webGL context,
  * where this is not avaiable they will simply not show.
- * 
+ *
  * ============================================================================
  * Plugin Commands
  * ============================================================================
  *
  * Sometimes you may want to change the filters applied to the background
- * for this the following plugin commands are available: 
+ * for this the following plugin commands are available:
  *
  * Plugin Command
  *   RemoveMenuBackgroundFilter $filter Removes the specif filter if exists
  *   RemoveAllMenuBackgroundFilters Removes any filter applied
- *   AppendMenuBackgroundFilter $filter Adds a filter at the end of the list 
+ *   AppendMenuBackgroundFilter $filter Adds a filter at the end of the list
  *   PrependMenuBackgroundFilter $filter Adds a filter at the begin of the list
- * 
+ *
  * where $filter can be any of the following:
  * Blur, BlurX, BlurY, ColorMatrix, ColorStep, CrossHatch, DotScreen, Gray,
  * Invert, Pixelate, RGBSplit, Sepia, Twist
