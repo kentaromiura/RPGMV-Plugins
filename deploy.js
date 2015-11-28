@@ -35,7 +35,8 @@ clint.on('complete', function(){
 			wrap.require(path)
 			wrap.up(function(error, result){
 				result = result.replace(REQUIRE_NW_HACK, REQUIRE_NW)
-				var comment = source.slice(0, source.indexOf('*/') +3 )
+				var comment = source.slice(0, source.indexOf('*/'))
+				comment = comment + '* released under MIT, see https://github.com/kentaromiura/RPGMV-Plugins/blob/master/LICENSE\n */\n'
 				fs.writeFileSync(output + '/js/plugins/' + to, comment + result)	
 			})
 		})		
